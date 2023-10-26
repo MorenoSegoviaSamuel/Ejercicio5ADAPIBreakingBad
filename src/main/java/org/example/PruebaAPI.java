@@ -16,10 +16,17 @@ public class PruebaAPI {
         ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
         try {
             JsonNode rootNode = objectMapper.readTree(new URL("https://api.breakingbadquotes.xyz/v1/quotes/50"));
-            List<Frase> frase = objectMapper.readValue(rootNode.traverse(), new TypeReference<>(){});
-            frase.forEach(System.out::println);
+            List<Frase> frases = objectMapper.readValue(rootNode.traverse(), new TypeReference<>(){});
+
+            System.out.println(buscarFrases(frases, "Walter"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
     }
+
+    public static List<Frase> buscarFrases (List<Frase> libros, String palabra){
+        return libros.stream().filter((frase)-> frase.getAuthor().contains(palabra)).toList();
+    }
+
 }

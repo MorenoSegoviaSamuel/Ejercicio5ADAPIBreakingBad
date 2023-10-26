@@ -20,6 +20,14 @@ public class Frase{
         this.author = author;
     }
 
+    public String getQuote() {
+        return quote;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
     @Override
     public String toString() {
         return "Frase{" +
